@@ -4,11 +4,32 @@
   
   
   <entry>
+    <title>ZeroJudge解題筆記:f580-骰子</title>
+    <link href="/2025/11/24/t1/"/>
+    <url>/2025/11/24/t1/</url>
+    
+    <content type="html"><![CDATA[<h1 id="題目概述"><a href="#題目概述" class="headerlink" title="題目概述"></a>題目概述</h1><p><a href="https://zerojudge.tw/ShowProblem?problemid=f580">題目連結</a></p><p><img src="/img/f580ZJ.png"></p><p>簡單來說就是將每一個骰子都模擬成一個二維list，總共有3種操作方式，依每一行輸入的a跟b而定。若a,b都是正整數，交換編號a與編號b的骰子的位置；若b為-1，將編號a的骰子向前旋轉；若b為-2，將編號a的骰子向右旋轉。輸入共有m+1行，第一行輸入2個整數n跟m，給定骰子數量以及操作次數；再來有m行，每行都要輸入2個整數a跟b，表示第m次操作，最後依序輸出每一個編號骰子朝上的點數。</p><h1 id="解題思路"><a href="#解題思路" class="headerlink" title="解題思路"></a>解題思路</h1><p>先def二個函式，分別表示向前旋轉以及向右旋轉。每個骰子都用二維陣列表示，用for迴圈將骰子存入list中，形成n<em>2</em>2的三維陣列。操作完成後，輸出每個骰子的第0列第0個，即為題目所要求的正面。這裡有一個很關鍵的概念，就是骰子相對的面總和永遠是7。所以依照題目的指示，以[[1,2,6,5],[1,4,6,3]]來作為骰子的初始狀態，則[0][0]就是朝上的點數。假設要向前轉，那就要將[1,4,6,3]變成[3,1,4,6]，然後把第0個跟第2個變成[1,2,6,5]的第0跟第2，所以[1,2,6,5]會變成[3,2,4,5]。向右轉也是差不多的邏輯，只要記得相對的面總和永遠是7就好。</p><h1 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h1><figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs prolog">def right(s): #向右旋轉<br>    a=s[<span class="hljs-number">0</span>][:]<br>    b=s[<span class="hljs-number">1</span>][:]<br>    out=[]<br>    a=a[<span class="hljs-number">-1</span>:]+a[:-<span class="hljs-number">1</span>]<br>    b[<span class="hljs-number">0</span>]=a[<span class="hljs-number">0</span>]<br>    b[<span class="hljs-number">2</span>]=a[<span class="hljs-number">2</span>]<br>    out.append(a)<br>    out.append(b)<br>    return out<br><br>def front(s): #向前旋轉<br>    a=s[<span class="hljs-number">0</span>][:]<br>    b=s[<span class="hljs-number">1</span>][:]<br>    out=[]<br>    b=b[<span class="hljs-number">-1</span>:]+b[:-<span class="hljs-number">1</span>] <br>    a[<span class="hljs-number">0</span>]=b[<span class="hljs-number">0</span>]<br>    a[<span class="hljs-number">2</span>]=b[<span class="hljs-number">2</span>]<br>    out.append(a)<br>    out.append(b)<br>    return out<br><br>s=[[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">6</span>,<span class="hljs-number">5</span>],[<span class="hljs-number">1</span>,<span class="hljs-number">4</span>,<span class="hljs-number">6</span>,<span class="hljs-number">3</span>]]<br>n,m=map(int,input().split())<br>ans=[]<br>for i in range(n):<br>    ans.append(s)<br>for i in range(m):<br>    a,b=map(int,input().split())<br>    if b==<span class="hljs-number">-1</span>:<br>        ans[a<span class="hljs-number">-1</span>]=front(ans[a<span class="hljs-number">-1</span>])<br>    if b==<span class="hljs-number">-2</span>:<br>        ans[a<span class="hljs-number">-1</span>]=right(ans[a<span class="hljs-number">-1</span>]) <br>    elif a&gt;<span class="hljs-number">0</span> and b&gt;<span class="hljs-number">0</span>:<br>       ans[a<span class="hljs-number">-1</span>],ans[b<span class="hljs-number">-1</span>]=ans[b<span class="hljs-number">-1</span>],ans[a<span class="hljs-number">-1</span>] #交換位置<br>c=[]<br>for i in range(n):<br>    c.append(ans[i][<span class="hljs-number">0</span>][<span class="hljs-number">0</span>])<br>print(*c)<br></code></pre></td></tr></table></figure><h1 id="執行結果"><a href="#執行結果" class="headerlink" title="執行結果"></a>執行結果</h1><p><img src="/img/580out.png"></p><p>總共花費32ms 程式大小約3.2MB</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Zerojudge</tag>
+      
+      <tag>APCS</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>test</title>
     <link href="/2025/09/04/test/"/>
     <url>/2025/09/04/test/</url>
     
-    <content type="html"><![CDATA[<p>測試用文章<br><img src="/img/Screenshot_145.png"></p>]]></content>
+    <content type="html"><![CDATA[<p><img src="/img/Screenshot_145.png"></p>]]></content>
     
     
     
