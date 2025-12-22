@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://hsieh0125.github.io/img/f580ZJ.png">
 <meta property="og:image" content="https://hsieh0125.github.io/img/580out.png">
 <meta property="article:published_time" content="2025-11-24T13:50:36.000Z">
-<meta property="article:modified_time" content="2025-11-26T14:07:58.426Z">
+<meta property="article:modified_time" content="2025-12-22T11:36:18.516Z">
 <meta property="article:author" content="Hsieh0125">
 <meta property="article:tag" content="Zerojudge">
 <meta property="article:tag" content="APCS">
@@ -198,7 +198,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/WEB.png') no-repeat center center; background-size: cover;">
+     style="background: url('/img/1371658.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -287,7 +287,7 @@
 <h1 id="程式碼"><a href="#程式碼" class="headerlink" title="程式碼"></a>程式碼</h1><figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs prolog">def right(s): #向右旋轉<br>    a=s[<span class="hljs-number">0</span>][:]<br>    b=s[<span class="hljs-number">1</span>][:]<br>    out=[]<br>    a=a[<span class="hljs-number">-1</span>:]+a[:-<span class="hljs-number">1</span>]<br>    b[<span class="hljs-number">0</span>]=a[<span class="hljs-number">0</span>]<br>    b[<span class="hljs-number">2</span>]=a[<span class="hljs-number">2</span>]<br>    out.append(a)<br>    out.append(b)<br>    return out<br><br>def front(s): #向前旋轉<br>    a=s[<span class="hljs-number">0</span>][:]<br>    b=s[<span class="hljs-number">1</span>][:]<br>    out=[]<br>    b=b[<span class="hljs-number">-1</span>:]+b[:-<span class="hljs-number">1</span>] <br>    a[<span class="hljs-number">0</span>]=b[<span class="hljs-number">0</span>]<br>    a[<span class="hljs-number">2</span>]=b[<span class="hljs-number">2</span>]<br>    out.append(a)<br>    out.append(b)<br>    return out<br><br>s=[[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">6</span>,<span class="hljs-number">5</span>],[<span class="hljs-number">1</span>,<span class="hljs-number">4</span>,<span class="hljs-number">6</span>,<span class="hljs-number">3</span>]]<br>n,m=map(int,input().split())<br>ans=[]<br>for i in range(n):<br>    ans.append(s)<br>for i in range(m):<br>    a,b=map(int,input().split())<br>    if b==<span class="hljs-number">-1</span>:<br>        ans[a<span class="hljs-number">-1</span>]=front(ans[a<span class="hljs-number">-1</span>])<br>    if b==<span class="hljs-number">-2</span>:<br>        ans[a<span class="hljs-number">-1</span>]=right(ans[a<span class="hljs-number">-1</span>]) <br>    elif a&gt;<span class="hljs-number">0</span> and b&gt;<span class="hljs-number">0</span>:<br>       ans[a<span class="hljs-number">-1</span>],ans[b<span class="hljs-number">-1</span>]=ans[b<span class="hljs-number">-1</span>],ans[a<span class="hljs-number">-1</span>] #交換位置<br>c=[]<br>for i in range(n):<br>    c.append(ans[i][<span class="hljs-number">0</span>][<span class="hljs-number">0</span>])<br>print(*c)<br></code></pre></td></tr></table></figure>
 
 <h1 id="執行結果"><a href="#執行結果" class="headerlink" title="執行結果"></a>執行結果</h1><p><img src="/img/580out.png" srcset="/img/loading.gif" lazyload></p>
-<p>總共花費32ms 程式大小約3.2MB</p>
+<p>總共花費22ms 程式大小約3.2MB</p>
 
                 
               </div>
@@ -358,6 +358,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2025/12/20/115%E7%89%B9%E9%81%B8%E5%BF%83%E5%BE%97/" title="115特選心得(資工、資管)">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">115特選心得(資工、資管)</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
